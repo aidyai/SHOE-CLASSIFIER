@@ -162,14 +162,14 @@ body{
     align-items: center;
 }
 
-.shoeName div .big{
+.shoeName div .big {
     margin-right: 23px;
     font-size: 3.00rem;
-    color: #fff;
+    color: #e93434;
     line-height: 1;
     margin-top: -107px;
     font-weight: 1000;
-    font-family: 'Edit Undo Dot BRK', sans-serif;                                                
+    font-family: 'Edit Undo Dot BRK', sans-serif;
 }
 
 
@@ -580,7 +580,7 @@ body{
     flex-direction: column;
     margin: auto;
     max-width: 90vw;
-    height: 111px;
+    height: 98px;
     background-color: #000000;
     border-radius: 20px;
     padding: 20px;
@@ -594,13 +594,14 @@ body{
     border-radius: 45px;
     overflow: hidden;
 }
+
+
   .progress {
     height: 100%;
-    background-color: #2563eb;
+    background-color: #e93434;
     border-radius: 16px;
     animation: fill-progress 3s ease-in-out forwards;
-}
-  
+} 
   .progress-text {
     margin-top: 10px;
     font-size: 24px;
