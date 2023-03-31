@@ -1,0 +1,49 @@
+# Configuration file for Weights and Biases
+
+# Set the project name and description
+project: "SHOE CLASSIFIER"
+description: "An Image classification project using pytorch and State of the Art Deep Learning Classification Algorithms"
+
+# Set the entity to which the project belongs
+entity: "aidysosu"
+
+# Set the sweep parameters for hyperparameter tuning
+sweep:
+  name: "hyperparameter-tuning"
+  method: "random"
+  metric:
+    name: "loss"
+    goal: "minimize"
+  parameters:
+    learning_rate:
+      values: [0.01, 0.001, 0.0001]
+      distribution: "uniform"
+    batch_size:
+      values: [32, 64, 128]
+      distribution: "q_log_uniform"
+      q: 1
+      min: 32
+      max: 256
+
+# Set the default configuration for the runs
+config:
+  epochs: 10
+  batch_size: 12
+  #learning_rate: 0.001
+  optimizer: "adam"
+  seed_value: 42
+  image_size: 512
+  classes: 5
+  learning_rate:  0.001
+  #"learning_rate":1e-3
+  momentum: 0.9
+  wd: 0.05 
+  test_size: 0.25
+  architecture: 'convnext_base'                #'vit_base_patch16_384'         #"vit_base_patch32_224"
+  dataset: 'shoe_data'
+
+    
+
+# Set the commands to run for each run
+run:
+  command: "python train.py"

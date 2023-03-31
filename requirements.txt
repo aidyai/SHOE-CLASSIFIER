@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+jinja2
+torch 
+torchvision
+python-multipart
+requests
+wandb
+timm
+onnx
+onnxruntime
+numpy

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOE CLASSIFIER</title>
+    <link rel="shortcut icon" href="{{ url_for('static', path='img/Shoes.png') }}">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
+    <meta name="title" content="SHOE-NET|By aidy osu">
+    <meta name="description" content="SHOE-NET An AI APP For Shoe Image Classification">
+
+    
+    <!--<link rel="icon" type="image/png" href="{{ url_for('static', path='/icons/icon.png') }}" />-->    
+    <link href="{{ url_for('static', path='/css/style.css') }}" rel="stylesheet">
+
+    <title>SHOE CLASSIFIER</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            
+            <div class="info">
+                <div class="shoeName">
+                    <div>
+                        <a href="/"><h1 class="big">SHOE CLASSIFIER</h1></a>
+                    </div>
+                </div>
+                <div class="description">
+                    <div>
+                        <h3 class="itt">
+                            SHOE-NET: An Artificial Intelligence Program that
+                            can classify between Shoe Types...
+                        </h3>
+                    </div>                 
+                </div>                
+            <div>     
+
+            <img src="{{ url_for('static', path='img/back.png')}}"alt="">
+
+
+
+
+            
+            <div class="py-6 justify-center items-center max-w-sm">
+
+                        
+                <form action="/results" enctype="multipart/form-data" method="post" class="space-y-4 flex flex-col max-w-sm justify-center items-center">
+                    <!-- Preview image -->
+                    <div id="preview-img" class="flex flex-col space-y-2 items-center"></div>
+
+                    <label id="label" onchange="load(event,'preview-img')" class="w-64 h-48 justify-center flex flex-col items-center px-4 py-6 bi bi-file-earmark-arrow-up-fill bg-black rounded-md shadow-md tracking-wide border border-black cursor-pointer hover:bg-black-500 hover:text-white text-blue-500 ease-linear transition-all duration-150">
+                    
+                    <!--hover:bg-black-500 hover:text-white text-black-500 ease-linear transition-all duration-150">-->
+
+                        <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM6.354 9.854a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 8.707V12.5a.5.5 0 0 1-1 0V8.707L6.354 9.854z">
+                            </path>
+                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z"></path>
+                        </svg>
+                        <span class="mt-2 text-sm">Select an image file</span>
+
+                        <input type="file" class="hidden" name="file" accept="image/*" required="">
+                    </label>
+                       
+
+                    <div class="description">
+                        <div>
+                            <h3 class="itt">
+                                n/b: This AI can confidently give wrong predictions 
+                                because of the bias in the dataset................we're working hard to fix this
+                            </h3>
+                        </div>                 
+                    </div>     
+          
+
+
+  
+                    <input class="bg-blue-600 rounded-full px-10 py-2 text-white hover:bg-blue-700 hover:shadow-sm transition-all cursor-pointer" type="submit">
+                
+                
+                
+                </form>
+            </div>
+        </div>
+        <main>
+
+        {% block content %}
+            
+            <div class="progress-container">
+            <div class="above-text">{{ aboveText }}</div>   
+            
+            <div class="progress-bar">
+                <div class="progress" style="width: {{ percentage }};"></div>
+            </div>
+            
+            <div class="below-text">{{ belowText }} {{ percentage }}</div>   
+            </div>
+                  
+        {% endblock %}  
+
+
+
+
+
+    </div>
+    <footer>
+        <p>Made with <span class="heart">❤</span> by <a href="https://github.com/aidyai/SHOE-NET">aidy osu</a></p>
+    </footer>
+    <script>
+        load = function (event, id) {
+            document.getElementById(id).innerHTML = '<span class="text-sm font-medium">Preview<span>';
+            var file = event.target.files[0];
+            var img = document.createElement('IMG');
+            img.className = 'h-48 w-auto rounded shadow-sm'
+            img.src = URL.createObjectURL(file);
+            document.getElementById(id).appendChild(img);
+            var label = document.getElementById("label");
+            label.classList.add("hidden");
+        };
+    </script>
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+                
+
+
+
+
+
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
+
+
+
+
