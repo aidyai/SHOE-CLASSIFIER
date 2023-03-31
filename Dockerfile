@@ -5,7 +5,7 @@ WORKDIR /backend
 COPY ./requirements.txt /backend/requirements.txt
 
 
-RUN pip install --no-cache-dir fastapi
+RUN pip install fastapi
 RUN pip install Jinja2 --upgrade
 RUN pip install --upgrade -r /backend/requirements.txt
 

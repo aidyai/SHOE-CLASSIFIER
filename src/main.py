@@ -55,15 +55,12 @@ async def results(request:Request, file: UploadFile = File(...) ):
     # Read the image file into memory
     contents = await file.read()
     image = Image.open(io.BytesIO(contents))
-
     # Apply the image transformations
     input_data = preprocess(image).unsqueeze(0)
-
     # Make a prediction using the model
     # Run the inference
     ort_inputs = {ort_session.get_inputs()[0].name: input_data.detach().numpy()}
     ort_outputs = ort_session.run(None, ort_inputs)
-
     # Convert the output to a probability score
     # Get class predictions and probability scores
     class_names = ["Boot", "Dressing Shoe", "Heels", "Sandals", "Sneakers"]
